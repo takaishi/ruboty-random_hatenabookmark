@@ -1,7 +1,3 @@
-require "ruboty/random_hatenabookmark/version"
+require 'ruboty/random_hatenabookmark/version'
+require 'ruboty/handlers/random_hatenabookmark'
 
-module Ruboty
-  module RandomHatenabookmark
-    # Your code goes here...
-  end
-end
