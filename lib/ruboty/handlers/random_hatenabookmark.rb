@@ -30,9 +30,13 @@ module Ruboty
       end
 
       def get_item(user, index)
-        rss = hatena_bookmark_rss(user, index / 20 * 20)
+        offset = index / 20 * 20
+        logger.info("offset = #{offset}")
+        rss = hatena_bookmark_rss(user, offset)
         namespaces = { 'rss' => 'http://purl.org/rss/1.0/' }
-        item = Nokogiri::XML.parse(rss).xpath("//rss:item[#{(index%20)}]", namespaces)
+        item_index = index % 20
+        logger.info("item_index = #{item_index}")
+        item = Nokogiri::XML.parse(rss).xpath("//rss:item[#{item_index}]", namespaces)
 
         {
             about: item.first.attributes['about'].value,
